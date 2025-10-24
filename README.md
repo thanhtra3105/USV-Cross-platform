@@ -1,1 +1,1 @@
-# Cross Platform Project
+# Cross-Platform Programming Project
