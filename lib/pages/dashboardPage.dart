@@ -90,80 +90,80 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
             ),
             SizedBox(height: 20),
-            Container(
-              height: 350,
-              width: 500,
-              child: FutureBuilder(
-                future: fetchUSVData(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const CircularProgressIndicator(),
-                        SizedBox(height: 20),
-                        Container(child: Text("Loading...")),
-                      ],
-                    );
-                  } else if (snapshot.hasError) {
-                    return Text("Error: ${snapshot.error}");
-                  } else if (snapshot.hasData) {
-                    final data = snapshot.data!;
-                    return Padding(
-                      padding: EdgeInsets.all(20),
-                      child: GridView.count(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                        childAspectRatio: 1.0,
-                        children: [
-                          buildDashboardCard(
-                            "Battery",
-                            "${data["Battery"]}",
-                            "%",
-                            Icons.battery_6_bar_sharp,
-                          ),
-                          buildDashboardCard(
-                            "Heading",
-                            "${data["Heading"]}",
-                            "km/h",
-                            Icons.speed,
-                          ),
-                          buildDashboardCard(
-                            "pH",
-                            "${data["pH"]}",
-                            "mol/L",
-                            Icons.science,
-                          ),
-                          buildDashboardCard(
-                            "DO",
-                            "${data["DO"]}",
-                            "mg/L",
-                            Icons.opacity,
-                          ),
-                          buildDashboardCard(
-                            "COD",
-                            "${data["COD"]}",
-                            "mg/L",
-                            Icons.waves,
-                          ),
-                          buildDashboardCard(
-                            "TSS",
-                            "${data["TSS"]}",
-                            "mg/L",
-                            Icons.analytics,
-                          ),
-                        ],
-                      ),
-                    );
-                  } else {
-                    return const Text("Không có dữ liệu!");
-                  }
-                },
-              ),
-            ),
+            // Container(
+            //   height: 350,
+            //   width: 500,
+            //   child: FutureBuilder(
+            //     future: fetchUSVData(),
+            //     builder: (context, snapshot) {
+            //       if (snapshot.connectionState == ConnectionState.waiting) {
+            //         return Column(
+            //           mainAxisAlignment: MainAxisAlignment.center,
+            //           children: [
+            //             const CircularProgressIndicator(),
+            //             SizedBox(height: 20),
+            //             Container(child: Text("Loading...")),
+            //           ],
+            //         );
+            //       } else if (snapshot.hasError) {
+            //         return Text("Error: ${snapshot.error}");
+            //       } else if (snapshot.hasData) {
+            //         final data = snapshot.data!;
+            //         return Padding(
+            //           padding: EdgeInsets.all(20),
+            //           child: GridView.count(
+            //             shrinkWrap: true,
+            //             physics: NeverScrollableScrollPhysics(),
+            //             crossAxisCount: 3,
+            //             mainAxisSpacing: 10,
+            //             crossAxisSpacing: 10,
+            //             childAspectRatio: 1.0,
+            //             children: [
+            //               buildDashboardCard(
+            //                 "Battery",
+            //                 "${data["Battery"]}",
+            //                 "%",
+            //                 Icons.battery_6_bar_sharp,
+            //               ),
+            //               buildDashboardCard(
+            //                 "Heading",
+            //                 "${data["Heading"]}",
+            //                 "km/h",
+            //                 Icons.speed,
+            //               ),
+            //               buildDashboardCard(
+            //                 "pH",
+            //                 "${data["pH"]}",
+            //                 "mol/L",
+            //                 Icons.science,
+            //               ),
+            //               buildDashboardCard(
+            //                 "DO",
+            //                 "${data["DO"]}",
+            //                 "mg/L",
+            //                 Icons.opacity,
+            //               ),
+            //               buildDashboardCard(
+            //                 "COD",
+            //                 "${data["COD"]}",
+            //                 "mg/L",
+            //                 Icons.waves,
+            //               ),
+            //               buildDashboardCard(
+            //                 "TSS",
+            //                 "${data["TSS"]}",
+            //                 "mg/L",
+            //                 Icons.analytics,
+            //               ),
+            //             ],
+            //           ),
+            //         );
+            //       } else {
+            //         return const Text("Không có dữ liệu!");
+            //       }
+            //     },
+            //   ),
+            // ),
 
             /* dung future.wait()*/
             Container(
