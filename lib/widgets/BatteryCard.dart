@@ -37,14 +37,14 @@ class Batterycard extends StatelessWidget {
                 showTicks: false,
                 radiusFactor: 0.8,
                 axisLineStyle: AxisLineStyle(
-                  thickness: 0.3,
+                  thickness: 0.25,
                   color: Colors.grey.shade300,
                   thicknessUnit: GaugeSizeUnit.factor,
                 ),
                 pointers: <GaugePointer>[
                   RangePointer(
                     value: value,
-                    width: 0.15,
+                    width: 0.25,
                     sizeUnit: GaugeSizeUnit.factor,
                     gradient: const SweepGradient(
                       colors: [Colors.blue, Colors.yellow, Colors.red],
@@ -70,10 +70,11 @@ class Batterycard extends StatelessWidget {
                               ),
                             ),
                             SizedBox(width: 5),
-                            Icon(Icons.percent_outlined),
                           ],
                         ),
-                        SizedBox(height: 30),
+                        SizedBox(height: 8),
+                        Icon(Icons.percent_outlined),
+                        SizedBox(height: 14),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

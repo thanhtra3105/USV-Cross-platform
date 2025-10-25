@@ -80,14 +80,29 @@ class SpeedGauge extends StatelessWidget {
                     widget: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(
-                          "${speed.toStringAsFixed(1)} km/h",
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontStyle: FontStyle.italic,
-                            fontWeight: FontWeight.w800,
-                            color: Colors.grey,
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "${speed.toStringAsFixed(1)}",
+                              style: const TextStyle(
+                                fontSize: 24,
+                                // fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.w800,
+                                color: Color.fromARGB(255, 112, 92, 228),
+                              ),
+                            ),
+                            SizedBox(width: 5),
+                            Text(
+                              "km/h",
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.w800,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
                         ),
                         SizedBox(height: 10),
                         Row(
