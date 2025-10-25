@@ -17,8 +17,20 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void reassemble() {
+    super.reassemble();
+  }
+
+  // Simulate fectch IoT data
 
   // Simulate fectch IoT data
   Future<double> fetchBattery() async {
@@ -33,7 +45,7 @@ class HomePage extends StatelessWidget {
 
   Future<double> fetchPH() async {
     await Future.delayed(Duration(seconds: 2));
-    return 7.2;
+    return Random().nextDouble() * 4 + 6;
   }
 
   Future<double> fetchDO() async {
@@ -43,7 +55,7 @@ class HomePage extends StatelessWidget {
 
   Future<double> fetchCOD() async {
     await Future.delayed(Duration(seconds: 3));
-    if (Random().nextBool()) throw Exception("COD sensor error");
+    // if (Random().nextBool()) throw Exception("COD sensor error");
     return 28.4;
   }
 
@@ -150,7 +162,9 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 ElevatedButton(
-                  onPressed: () => (context as Element).reassemble(),
+                  onPressed: () => setState(() {
+                    reassemble();
+                  }),
                   child: const Text("Retry"),
                 ),
               ],
