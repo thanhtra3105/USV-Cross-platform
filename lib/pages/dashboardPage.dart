@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:usv_project/widgets/history_chart.dart';
 import 'package:usv_project/widgets/DashboardCard.dart';
+import 'package:usv_project/widgets/SpeedCard.dart';
+import 'package:usv_project/widgets/BatteryCard.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -38,13 +40,13 @@ class _DashboardPageState extends State<DashboardPage> {
 
   Future<double> fetchDO() async {
     await Future.delayed(Duration(seconds: 4));
-    if (Random().nextBool()) throw Exception("fetch DO data failed");
+    // if (Random().nextBool()) throw Exception("fetch DO data failed");
     return double.parse((Random().nextDouble() * 7 + 5).toStringAsFixed(2));
   }
 
   Future<double> fetchCOD() async {
     await Future.delayed(Duration(seconds: 1));
-    if (Random().nextBool()) throw Exception("fetch COD data failed");
+    // if (Random().nextBool()) throw Exception("fetch COD data failed");
     return double.parse((Random().nextDouble() * 7 + 5).toStringAsFixed(2));
   }
 
@@ -81,7 +83,7 @@ class _DashboardPageState extends State<DashboardPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "USV State & Water Quality",
+              "USV Status & Water Quality",
               style: TextStyle(
                 fontFamily: "Roboto",
                 fontStyle: FontStyle.normal,
@@ -167,7 +169,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
             /* dung future.wait()*/
             Container(
-              height: 350,
+              height: 420,
               width: 500,
               child: FutureBuilder(
                 future: fetchAll(),
@@ -200,50 +202,54 @@ class _DashboardPageState extends State<DashboardPage> {
                   } else if (snapshot.hasData) {
                     final data = snapshot.data!;
                     return Padding(
-                      padding: EdgeInsets.all(20),
-                      child: GridView.count(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                        childAspectRatio: 1.0,
+                      padding: EdgeInsets.all(5),
+                      child: Column(
                         children: [
-                          buildDashboardCard(
-                            "Battery",
-                            "100",
-                            "%",
-                            Icons.battery_0_bar_sharp,
+                          GridView.count(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 10,
+                            crossAxisSpacing: 10,
+                            childAspectRatio: 1.0,
+                            children: [
+                              Batterycard(value: 89),
+                              SpeedGauge(speed: 7.5),
+                            ],
                           ),
-                          buildDashboardCard(
-                            "Heading",
-                            "10.8",
-                            "km/h",
-                            Icons.speed,
-                          ),
-                          buildDashboardCard(
-                            "pH",
-                            "${data["pH"]}",
-                            "mol/L",
-                            Icons.science,
-                          ),
-                          buildDashboardCard(
-                            "DO",
-                            "${data["DO"]}",
-                            "mg/L",
-                            Icons.opacity,
-                          ),
-                          buildDashboardCard(
-                            "COD",
-                            "${data["COD"]}",
-                            "mg/L",
-                            Icons.waves,
-                          ),
-                          buildDashboardCard(
-                            "TSS",
-                            "${data["TSS"]}",
-                            "mg/L",
-                            Icons.analytics,
+                          GridView.count(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            crossAxisCount: 4,
+                            mainAxisSpacing: 2,
+                            crossAxisSpacing: 2,
+                            childAspectRatio: 0.8,
+                            children: [
+                              buildDashboardCard(
+                                "pH",
+                                "${data["pH"]}",
+                                "mol/L",
+                                Icons.science,
+                              ),
+                              buildDashboardCard(
+                                "DO",
+                                "${data["DO"]}",
+                                "mg/L",
+                                Icons.opacity,
+                              ),
+                              buildDashboardCard(
+                                "COD",
+                                "${data["COD"]}",
+                                "mg/L",
+                                Icons.waves,
+                              ),
+                              buildDashboardCard(
+                                "TSS",
+                                "${data["TSS"]}",
+                                "mg/L",
+                                Icons.analytics,
+                              ),
+                            ],
                           ),
                         ],
                       ),

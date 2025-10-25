@@ -31,7 +31,7 @@ Widget buildDashboardCard(
           const SizedBox(height: 10),
           Text(
             value,
-            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           Text(unit, style: const TextStyle(fontSize: 16, color: Colors.grey)),
         ],
